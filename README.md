@@ -1,7 +1,7 @@
 README -- Human Activity Recognition Using Smartphones Analysis
 ========================================================
 
-The analysis functions are contained within a single script file, run_analysis.R.
+The analysis functions are contained within a single script file, run_analysis.R.  A detailed description of the analysis process, along with the input and output data is provided in the associated CodeBook.
 
 To run the analysis, download the source data zip file.  The file should be unzipped to a sub-folder of the script file named, "UCI HAR Dataset".
 
