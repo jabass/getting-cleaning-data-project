@@ -10,9 +10,10 @@ run_analysis <- function() {
     combinedX <- getCombinedXData()
     
     # Add the features as column names for the X data.
-    # Also strip the trailing "()" and replacing the "-" characters with "_".
+    # Also remove the "()" and replace the "-" characters with "_" for readability.
     features <- getAllFeatures()
-    variableNames <- gsub( "-", "_", substr(features[,2], 1, nchar(as.character(features[,2])) - 2) )
+    variableNames <- gsub( "-", "_", features[,2])
+    variableNames <- gsub( "()", "", variableNames, fixed = TRUE)
     colnames(combinedX) <- variableNames
     
     # Subset the data to include only mean and std features
@@ -142,9 +143,9 @@ getAllFeatures <- function() {
 filterMeanAndStdFeatures <- function( features ) {
     
     # Get all features that are either means or standard deviations
-    # Use the pattern that all mean features end with "mean()" and
-    # all standard deviation features end with "std()".
-    meanAndStdFeatures <- grepl(pattern="(mean\\(\\)|std\\(\\))$",features$Name)
+    # Use the pattern that all mean features contain "mean()" and
+    # all standard deviation features contain "std()".
+    meanAndStdFeatures <- grepl(pattern="(mean\\(\\)|std\\(\\))",features$Name)
     
     justMeanAndStdFeatures <- features[ meanAndStdFeatures, ]
     
